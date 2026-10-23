@@ -1,0 +1,27 @@
+# Override in your profile's cordis.patch.yml with a `- id: osslab` row; an
+# override replaces this whole `config`, so copy every key you want to keep.
+- insert:
+    - id: osslab
+      name: dsh-tideport-dock
+      config:
+        # Personal AWS profile holding the [osslab] keys (~/.aws/credentials, 0600).
+        profile: osslab
+        endpoint: https://s3.example.invalid
+        region: us-east-1
+        # Absolute path to the CA bundle checked by an administrator. Leave
+        # empty only while the CA is not yet distributed; never prefer
+        # insecureTLS over the real CA.
+        caBundle: ""
+        insecureTLS: false
+        # Non-secret config: endpoint/region/ca_bundle may also live here.
+        configPath: ~/.config/osslab/config.json
+        downloadsDir: ~/Downloads/osslab
+        # Empty = every bucket the credentials can see. Prefer listing the
+        # buckets you were actually granted.
+        allowedBuckets: []
+        # Writes and deletes stay off until you mean it; each call must also
+        # pass execute: true explicitly.
+        allowWrites: false
+        allowDeletes: false
+        maxListEntries: 1000
+        maxPutMiB: 512

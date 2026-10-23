@@ -1,0 +1,61 @@
+{
+  "name": "dsh-tideport-dock",
+  "version": "0.4.0",
+  "description": "Tideport storage management and compute-server transfers for DeepSeek Harness.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1156.0",
+    "@aws-sdk/credential-providers": "^3.1156.0",
+    "@smithy/node-http-handler": "^4.12.1"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./icon": "./icon.svg",
+    "./icon-settings": "./icon-settings.svg"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-sidebar-right"
+      ]
+    },
+    "manifestVersion": 1
+  },
+  "scripts": {
+    "requests:serve": "node service/cli.js serve",
+    "test": "node --test test/*.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Becomingw/Tideport-Dock.git"
+  },
+  "homepage": "https://github.com/Becomingw/Tideport-Dock",
+  "bugs": {
+    "url": "https://github.com/Becomingw/Tideport-Dock/issues"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib/",
+    "transfers/*.py",
+    "service/",
+    "docs/",
+    "cordis.patch.yml",
+    "icon.svg",
+    "icon-settings.svg",
+    "README.md",
+    "LICENSE"
+  ]
+}
